@@ -11,7 +11,7 @@ async def bot_start(msg: types.Message):
 
 async def test_message_handler(msg: types.Message):
     try:
-        output_msg = 'Я получил текст' + str(msg.text)
+        output_msg = 'Я получил текст: ' + str(msg.text)
         await msg.answer(output_msg, parse_mode= "Markdown")
     except Exception as error:
         logging.error('Возникла ошибка {0}'.format(str(error)))
@@ -24,4 +24,4 @@ async def test_callback(call: types.CallbackQuery):
         await call.answer()
     except Exception as error:
         logging.error('Возникла ошибка {0}'.format(str(error)))
-        await msg.answer("Произошла ошибка, повторите позднее")
+        await call.message.answer('Произошла ошибка, повторите позднее', parse_mode= "Markdown")
